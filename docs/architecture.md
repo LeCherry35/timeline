@@ -2,8 +2,8 @@
 
 ```text
 Claude Code or OpenCode container
-              │ MCP
-              ▼
+        ▲ chat      │ MCP
+        │           ▼
         Python backend
         ├── MCP server
         ├── Wikimedia integration
@@ -36,6 +36,29 @@ Same-date events are only deduplication candidates. Ambiguous candidates are ret
 - `GET /api/events` returns the initial event list.
 - `GET /api/events/stream` sends state changes.
 - `GET /api/health` reports backend health.
+- `POST /api/chat` sends `{ "message": string }` to the agent and returns `{ "reply": string }`.
+
+## Chat transport
+
+The browser talks only to the backend. The backend forwards each message to the agent container over HTTP on the compose network and returns the whole reply; timeline changes reach the browser through the event stream.
+
+The backend owns the single agent session: it creates one on the first message and reuses it. A backend restart starts a new session.
+
+For OpenCode the backend calls `opencode serve`:
+
+- `GET /global/health`
+- `POST /session`
+- `POST /session/:id/message` with `{ "parts": [{ "type": "text", "text": string }] }`; the reply is the concatenated text parts of the response.
+
+## Harness runtime contract
+
+A harness container:
+
+- serves its chat API on port `4096`, reachable only on the compose network;
+- is configured by `AGENT_HARNESS` (selects `agent/<name>/`), `AGENT_MODEL` (`provider/model`), and that provider's API key variable, so the provider is switched through `.env` alone;
+- reaches application capabilities only through the backend MCP server at `http://backend:8000/mcp`.
+
+Adding a harness requires `agent/<name>/` and a backend adapter; the browser API does not change.
 
 ## Event
 

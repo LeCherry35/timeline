@@ -47,3 +47,9 @@ Frontend, from `frontend/`:
 - `npm run build`
 
 Backend settings are read from `TIMELINE_`-prefixed environment variables or `backend/.env`.
+
+Full stack in containers, from the repository root:
+
+- Copy `.env.example` to `.env` and set the model and provider API key.
+- To switch model provider, change `AGENT_MODEL` (`provider/model`) and set that provider's API key variable in `.env` (`OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, ...), then restart the agent container. `docker compose run --rm agent opencode models` lists available models.
+- `docker compose up --build` — frontend on `http://localhost:5173`, backend on `http://localhost:8000`, agent on the compose network only
