@@ -77,6 +77,10 @@ wikipedia_url
 
 Adding events returns `added`, `duplicates`, `ambiguous`, `rejected`, and `warnings`. Ambiguous events are also counted as added. Events over the limit (`TIMELINE_MAX_EVENTS`, default 100) are rejected.
 
+Events come from the main statements of these Wikidata date properties: `P569` birth, `P570` death, `P571` inception, `P576` dissolution, `P577` publication, `P580` start, `P582` end, `P585` point in time. Deprecated, valueless, non-day-precision, and BCE statements are rejected. The title is the entity label, with a suffix for every property except `P585`, for example `Napoleon (born)`. The description is the Wikidata description.
+
+Wikimedia requests share one client that sends a `User-Agent` with `TIMELINE_WIKIMEDIA_CONTACT`, times out after 20 seconds, and retries `429`, `5xx`, and network failures twice, honouring `Retry-After` up to 10 seconds. Failures raise `WikimediaError`.
+
 The in-memory store is scoped to the current agent session and is discarded when that session ends or the backend restarts.
 
 The vis-timeline data adapter stays separate from the event model so the renderer can later be replaced with Canvas or WebGL.

@@ -1,0 +1,167 @@
+{
+ "entities": {
+  "Q48314": {
+   "type": "item",
+   "id": "Q48314",
+   "labels": {
+    "en": {
+     "language": "en",
+     "value": "Battle of Waterloo"
+    }
+   },
+   "descriptions": {
+    "en": {
+     "language": "en",
+     "value": "1815 battle during the War of the Seventh Coalition"
+    }
+   },
+   "claims": {
+    "P585": [
+     {
+      "mainsnak": {
+       "snaktype": "value",
+       "property": "P585",
+       "datavalue": {
+        "value": {
+         "time": "+1815-06-18T00:00:00Z",
+         "timezone": 0,
+         "before": 0,
+         "after": 0,
+         "precision": 11,
+         "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+        },
+        "type": "time"
+       },
+       "datatype": "time"
+      },
+      "type": "statement",
+      "id": "Q48314$bacee479-457c-e1dd-9285-3685e0d86514",
+      "rank": "normal"
+     }
+    ]
+   },
+   "sitelinks": {
+    "enwiki": {
+     "site": "enwiki",
+     "title": "Battle of Waterloo",
+     "badges": [],
+     "url": "https://en.wikipedia.org/wiki/Battle_of_Waterloo"
+    }
+   }
+  },
+  "Q517": {
+   "type": "item",
+   "id": "Q517",
+   "labels": {
+    "en": {
+     "language": "en",
+     "value": "Napoleon"
+    }
+   },
+   "descriptions": {
+    "en": {
+     "language": "en",
+     "value": "French military leader, French Emperor 1804–1814 and again in 1815 (1769–1821)"
+    }
+   },
+   "claims": {
+    "P569": [
+     {
+      "mainsnak": {
+       "snaktype": "value",
+       "property": "P569",
+       "datavalue": {
+        "value": {
+         "time": "+1769-08-15T00:00:00Z",
+         "timezone": 0,
+         "before": 0,
+         "after": 0,
+         "precision": 11,
+         "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+        },
+        "type": "time"
+       },
+       "datatype": "time"
+      },
+      "type": "statement",
+      "id": "q517$7776F14B-A43E-418D-8046-B4E0617757D6",
+      "rank": "preferred"
+     },
+     {
+      "mainsnak": {
+       "snaktype": "value",
+       "property": "P569",
+       "datavalue": {
+        "value": {
+         "time": "+1769-01-01T00:00:00Z",
+         "timezone": 0,
+         "before": 0,
+         "after": 0,
+         "precision": 9,
+         "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+        },
+        "type": "time"
+       },
+       "datatype": "time"
+      },
+      "type": "statement",
+      "id": "Q517$53576E73-CB76-4960-BEC1-1934DB266963",
+      "rank": "normal"
+     }
+    ],
+    "P570": [
+     {
+      "mainsnak": {
+       "snaktype": "value",
+       "property": "P570",
+       "datavalue": {
+        "value": {
+         "time": "+1821-05-05T00:00:00Z",
+         "timezone": 0,
+         "before": 0,
+         "after": 0,
+         "precision": 11,
+         "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+        },
+        "type": "time"
+       },
+       "datatype": "time"
+      },
+      "type": "statement",
+      "id": "q517$8C0A0067-3CA6-41C2-990C-6B879B2896CA",
+      "rank": "preferred"
+     },
+     {
+      "mainsnak": {
+       "snaktype": "value",
+       "property": "P570",
+       "datavalue": {
+        "value": {
+         "time": "+1821-01-01T00:00:00Z",
+         "timezone": 0,
+         "before": 0,
+         "after": 0,
+         "precision": 9,
+         "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+        },
+        "type": "time"
+       },
+       "datatype": "time"
+      },
+      "type": "statement",
+      "id": "Q517$98A5E2EC-E7AE-43EA-AC89-2131C48EB6A0",
+      "rank": "normal"
+     }
+    ]
+   },
+   "sitelinks": {
+    "enwiki": {
+     "site": "enwiki",
+     "title": "Napoleon",
+     "badges": [],
+     "url": "https://en.wikipedia.org/wiki/Napoleon"
+    }
+   }
+  }
+ }
+}

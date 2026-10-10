@@ -37,6 +37,8 @@ limit
 
 Use for structured requests such as battles in a period or events involving a country. The backend does not accept unrestricted SPARQL. Public SPARQL failures are returned as warnings.
 
+`event_type` is one of: battle, war, siege, treaty, peace treaty, revolution, rebellion, coup, massacre, election, coronation, earthquake, volcanic eruption. `place` and `participant` take a name or a Wikidata QID; a name resolves to the top entity search result. Discovery matches point-in-time and start-time dates inside the range. A query without filters over a long range can time out.
+
 ### `search_wikipedia_and_add_events`
 
 Runs Wikipedia full-text search, resolves pages to Wikidata entities, obtains structured dates from Wikidata, and adds events.
@@ -60,6 +62,8 @@ Returns the complete current event list so the agent can discuss it. Pagination 
 ## Search result handling
 
 Each search tool fetches structured Wikidata statements, accepts only exact-day dates, normalizes results, deduplicates them, updates state, and returns counts and warnings.
+
+`limit` counts Wikidata entities, at most 50. One entity can produce several events, such as a start and an end.
 
 Deduplication is deterministic. Events are duplicates when their source statement IDs match, or when their Wikidata ID, date property, and date match. Other same-date events are retained; equal normalized titles are reported as ambiguous. Cross-entity semantic and LLM-based deduplication are deferred.
 

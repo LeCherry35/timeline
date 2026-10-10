@@ -39,6 +39,7 @@ Backend, from `backend/`:
 
 - `uv run fastapi dev app/main.py` — serve on `http://localhost:8000`
 - `uv run pytest`
+- `uv run python -m scripts.try_wikimedia` — run one live Wikimedia search; edit the variables at the top of `scripts/try_wikimedia.py` first
 
 Frontend, from `frontend/`:
 
@@ -47,6 +48,8 @@ Frontend, from `frontend/`:
 - `npm run build`
 
 Backend settings are read from `TIMELINE_`-prefixed environment variables or `backend/.env`.
+
+`TIMELINE_WIKIMEDIA_CONTACT` is the URL or email address sent to Wikimedia in the `User-Agent`. It defaults to the repository URL; Wikimedia refuses requests without contact information with `403`.
 
 Full stack in containers, from the repository root:
 

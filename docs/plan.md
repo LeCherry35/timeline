@@ -16,12 +16,12 @@
 
 ## 3. Wikimedia integration
 
-- [ ] Implement a shared Wikimedia HTTP client with a descriptive user agent, timeouts, throttling handling, and bounded retries.
-- [ ] Implement Wikidata entity search and structured statement retrieval.
-- [ ] Implement event discovery with allowlisted SPARQL templates and filters.
-- [ ] Implement Wikipedia full-text search and Wikidata QID resolution.
-- [ ] Normalize exact-day dates, titles, descriptions, sitelinks, and source statement IDs.
-- [ ] Test clients with recorded or mocked Wikimedia responses.
+- [x] Implement a shared Wikimedia HTTP client with a descriptive user agent, timeouts, throttling handling, and bounded retries.
+- [x] Implement Wikidata entity search and structured statement retrieval.
+- [x] Implement event discovery with allowlisted SPARQL templates and filters.
+- [x] Implement Wikipedia full-text search and Wikidata QID resolution.
+- [x] Normalize exact-day dates, titles, descriptions, sitelinks, and source statement IDs.
+- [x] Test clients with recorded or mocked Wikimedia responses.
 
 ## 4. Timeline service and MCP
 

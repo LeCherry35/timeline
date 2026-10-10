@@ -1,0 +1,33 @@
+{
+ "query": {
+  "pages": [
+   {
+    "pageid": 4356,
+    "ns": 0,
+    "title": "Battle of Waterloo",
+    "index": 1,
+    "pageprops": {
+     "wikibase_item": "Q48314"
+    }
+   },
+   {
+    "pageid": 2596811,
+    "ns": 0,
+    "title": "Waterloo campaign order of battle",
+    "index": 3,
+    "pageprops": {
+     "wikibase_item": "Q7100624"
+    }
+   },
+   {
+    "pageid": 50761092,
+    "ns": 0,
+    "title": "Battle of Waterloo (disambiguation)",
+    "index": 2,
+    "pageprops": {
+     "wikibase_item": "Q25194739"
+    }
+   }
+  ]
+ }
+}

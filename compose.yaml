@@ -1,6 +1,8 @@
 services:
   backend:
     build: ./backend
+    environment:
+      TIMELINE_WIKIMEDIA_CONTACT: ${TIMELINE_WIKIMEDIA_CONTACT:-https://github.com/LeCherry35/timeline}
     ports:
       - "8000:8000"
 
