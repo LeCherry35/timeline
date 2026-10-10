@@ -92,6 +92,26 @@ def test_fallback_key_applies_without_statement_id():
     assert (result.added, result.duplicates) == (2, 1)
 
 
+@pytest.mark.parametrize("statement_ids", [("Q48314$1", None), (None, "Q48314$1")])
+def test_same_event_with_and_without_statement_id_is_duplicate(statement_ids):
+    first, second = statement_ids
+    store = EventStore(max_events=10)
+    store.add([candidate(source_statement_id=first)])
+
+    result = store.add([candidate(source_statement_id=second)])
+
+    assert (result.added, result.duplicates) == (0, 1)
+    assert len(store.list()) == 1
+
+
+def test_stored_events_are_immutable():
+    store = EventStore(max_events=10)
+    store.add([candidate()])
+
+    with pytest.raises(ValidationError):
+        store.list()[0].date = date(1900, 1, 1)
+
+
 def test_same_date_events_are_retained():
     store = EventStore(max_events=10)
     store.add([candidate()])
@@ -136,8 +156,11 @@ def test_limit_rejects_new_events_but_still_counts_duplicates():
     store = EventStore(max_events=2)
 
     result = store.add(
-        [candidate(source_statement_id=str(n), title=f"Event {n}") for n in range(3)]
-        + [candidate(source_statement_id="0", title="Event 0")]
+        [
+            candidate(wikidata_id=f"Q{n}", source_statement_id=str(n), title=f"Event {n}")
+            for n in range(3)
+        ]
+        + [candidate(wikidata_id="Q0", source_statement_id="0", title="Event 0")]
     )
 
     assert (result.added, result.rejected, result.duplicates) == (2, 1, 1)

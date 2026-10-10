@@ -61,7 +61,7 @@ Returns the complete current event list so the agent can discuss it. Pagination 
 
 Each search tool fetches structured Wikidata statements, accepts only exact-day dates, normalizes results, deduplicates them, updates state, and returns counts and warnings.
 
-Deduplication is deterministic. Events are duplicates when their source statement IDs match, or when both lack one and their Wikidata ID, date property, and date match. Other same-date events are retained; equal normalized titles are reported as ambiguous. Cross-entity semantic and LLM-based deduplication are deferred.
+Deduplication is deterministic. Events are duplicates when their source statement IDs match, or when their Wikidata ID, date property, and date match. Other same-date events are retained; equal normalized titles are reported as ambiguous. Cross-entity semantic and LLM-based deduplication are deferred.
 
 ## Boundaries
 

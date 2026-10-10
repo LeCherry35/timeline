@@ -54,7 +54,7 @@ The REST API provides page content and HTML. The Action API supports search, ext
 2. Resolve results to Wikidata QIDs.
 3. Fetch structured statements and exact-day dates.
 4. Normalize events while preserving source statement identity.
-5. Deduplicate matching source statement IDs, with entity, date property, and date as the fallback key.
+5. Deduplicate on matching source statement IDs or on matching entity, date property, and date.
 6. Retain other same-date events and warn when their normalized titles match.
 7. Follow Wikipedia sitelinks for readable descriptions.
 8. Add valid events directly; the agent does not review individual results.

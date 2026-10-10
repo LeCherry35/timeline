@@ -2,7 +2,7 @@ from collections.abc import Iterable
 from datetime import date
 from uuid import uuid4
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class EventCandidate(BaseModel):
@@ -16,6 +16,8 @@ class EventCandidate(BaseModel):
 
 
 class Event(EventCandidate):
+    model_config = ConfigDict(frozen=True)
+
     id: str
 
 
@@ -27,10 +29,8 @@ class AddResult(BaseModel):
     warnings: list[str] = []
 
 
-def dedup_key(event: EventCandidate) -> tuple:
-    if event.source_statement_id:
-        return ("statement", event.source_statement_id)
-    return ("entity", event.wikidata_id, event.date_property, event.date)
+def fallback_key(event: EventCandidate) -> tuple:
+    return (event.wikidata_id, event.date_property, event.date)
 
 
 def normalize_title(title: str) -> str:
@@ -40,22 +40,27 @@ def normalize_title(title: str) -> str:
 class EventStore:
     def __init__(self, max_events: int) -> None:
         self.max_events = max_events
-        self._events: dict[tuple, Event] = {}
+        self._events: list[Event] = []
+        self._statement_ids: set[str] = set()
+        self._fallback_keys: set[tuple] = set()
 
     def list(self) -> list[Event]:
-        return sorted(self._events.values(), key=lambda event: event.date)
+        return sorted(self._events, key=lambda event: event.date)
 
     def clear(self) -> None:
         self._events.clear()
+        self._statement_ids.clear()
+        self._fallback_keys.clear()
 
     def add(self, candidates: Iterable[EventCandidate]) -> AddResult:
         result = AddResult()
         same_day_titles = {
-            (event.date, normalize_title(event.title)) for event in self._events.values()
+            (event.date, normalize_title(event.title)) for event in self._events
         }
         for candidate in candidates:
-            key = dedup_key(candidate)
-            if key in self._events:
+            key = fallback_key(candidate)
+            statement_id = candidate.source_statement_id
+            if key in self._fallback_keys or statement_id in self._statement_ids:
                 result.duplicates += 1
                 continue
             if len(self._events) >= self.max_events:
@@ -69,7 +74,10 @@ class EventStore:
                     f"({candidate.wikidata_id})."
                 )
             same_day_titles.add(day_title)
-            self._events[key] = Event(id=uuid4().hex, **candidate.model_dump())
+            self._events.append(Event(id=uuid4().hex, **candidate.model_dump()))
+            self._fallback_keys.add(key)
+            if statement_id:
+                self._statement_ids.add(statement_id)
             result.added += 1
         if result.rejected:
             result.warnings.append(

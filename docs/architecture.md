@@ -25,7 +25,7 @@ MCP tools and the browser API use the same timeline service. State changes are s
 1. The agent selects entity search, structured discovery, or Wikipedia full-text search.
 2. The backend resolves results to Wikidata entities and retrieves structured date statements.
 3. Results without an exact-day date are rejected.
-4. Deterministic deduplication compares source statement IDs, with Wikidata ID, date property, and date as the fallback key.
+4. Deterministic deduplication compares source statement IDs and the key of Wikidata ID, date property, and date; a match on either is a duplicate.
 5. Valid new events are stored and broadcast to the browser.
 6. The tool returns counts and warnings; the agent does not review individual results.
 
