@@ -32,3 +32,18 @@ The MVP uses in-memory state. It has no database, authentication, task queue, or
 ## Runtime
 
 The MVP runs locally as a React frontend, Python backend, and one selected agent container.
+
+## Development
+
+Backend, from `backend/`:
+
+- `uv run fastapi dev app/main.py` — serve on `http://localhost:8000`
+- `uv run pytest`
+
+Frontend, from `frontend/`:
+
+- `npm run dev` — serve on `http://localhost:5173`, proxying `/api` to the backend
+- `npm test`
+- `npm run build`
+
+Backend settings are read from `TIMELINE_`-prefixed environment variables or `backend/.env`.

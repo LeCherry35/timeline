@@ -1,12 +1,9 @@
 # Prototype implementation plan
-
-The repository currently contains documentation only. Implement the prototype in the following order.
-
 ## 1. Runtime foundation
 
 - [ ] Define the browser-to-agent chat transport and initial harness runtime contract.
-- [ ] Scaffold the Python backend with FastAPI, settings, tests, and dependency management.
-- [ ] Scaffold the React/Vite frontend with TypeScript and Vitest.
+- [x] Scaffold the Python backend with FastAPI, settings, tests, and dependency management.
+- [x] Scaffold the React/Vite frontend with TypeScript and Vitest.
 - [ ] Add local container configuration for the backend, frontend, and one agent harness.
 
 ## 2. Event domain
