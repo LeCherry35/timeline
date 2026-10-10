@@ -8,11 +8,11 @@
 
 ## 2. Event domain
 
-- [ ] Implement the event model, including Wikidata entity and source statement IDs.
-- [ ] Implement the in-memory event store and approximately 100-event limit.
-- [ ] Implement deterministic deduplication by source statement, with entity, date property, and date as the fallback key.
-- [ ] Retain other same-date events and warn on equal normalized titles.
-- [ ] Test validation, insertion, limits, and deduplication.
+- [x] Implement the event model, including Wikidata entity and source statement IDs.
+- [x] Implement the in-memory event store and approximately 100-event limit.
+- [x] Implement deterministic deduplication by source statement, with entity, date property, and date as the fallback key.
+- [x] Retain other same-date events and warn on equal normalized titles.
+- [x] Test validation, insertion, limits, and deduplication.
 
 ## 3. Wikimedia integration
 

@@ -73,7 +73,9 @@ description
 wikipedia_url
 ```
 
-`date` is an exact day in `YYYY-MM-DD` format. `source_statement_id` and `date_property` identify its originating Wikidata statement for deterministic deduplication. Importance and imprecise historical dates are deferred.
+`date` is an exact day in `YYYY-MM-DD` format. `source_statement_id` and `date_property` identify its originating Wikidata statement for deterministic deduplication; `source_statement_id`, `description`, and `wikipedia_url` are optional. Importance and imprecise historical dates are deferred.
+
+Adding events returns `added`, `duplicates`, `ambiguous`, `rejected`, and `warnings`. Ambiguous events are also counted as added. Events over the limit (`TIMELINE_MAX_EVENTS`, default 100) are rejected.
 
 The in-memory store is scoped to the current agent session and is discarded when that session ends or the backend restarts.
 
